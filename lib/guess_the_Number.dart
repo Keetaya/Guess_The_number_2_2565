@@ -4,8 +4,11 @@ import 'package:hello_flutter/game.dart';
 void main() {
   var game = Game();
   late GuessResult guessResult;
-  //var isCorrect = 0;
+
+  var isPlayAgain = 0;
   //int co=0;
+  var myList = <String>[];
+  myList.add('Y');
   print('╔═════════════════════════════════════════════');
   print('║             GUESS THE NUMBER                ');
   print('╟─────────────────────────────────────────────');
@@ -17,11 +20,13 @@ void main() {
       return;
     }
     var guess = int.tryParse(input);
+
     //co+=1;
     if (guess == null) {
       //co-=1;
       continue;
     }
+
     //isCorrect = game.doGuess(guess);
     guessResult = game.doGuess(guess);
     if (guessResult == GuessResult.correct) {
@@ -29,6 +34,11 @@ void main() {
       print('╟─────────────────────────────────────────────');
       print('║                 THE END                     ');
       print('╚═════════════════════════════════════════════');
+      print('Play again? (Y/N): N');
+      print("");
+      print('');
+      print("You've played 1 games ");
+      print('🚀 Game #1: ${game.totalGuess} guesses');
     } else if (guessResult == GuessResult.tooHigh) {
       print('║ ➜ $guess is TOO HIGH! ▲');
       print('╟─────────────────────────────────────────────');
@@ -36,6 +46,7 @@ void main() {
       print('║ ➜ $guess is TOO LOW! ▼');
       print('╟─────────────────────────────────────────────');
     }
+
 
     /* if(isCorrect==0) {
       print('║ ➜ $guess is CORRECT ❤, total guesses is ${game.totalGuess}');
@@ -52,4 +63,4 @@ void main() {
   } //while (isCorrect != 0);
   while (guessResult != GuessResult.correct);
 }
-///kuay
+
